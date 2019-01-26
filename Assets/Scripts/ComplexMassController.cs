@@ -8,6 +8,11 @@ public class ComplexMassController : MonoBehaviour
 
     public static Quaternion GetRotatorForLocation(Vector3 Location)
     {
+        if (WorldComplexMassController == null)
+        {
+            return Quaternion.identity;
+        }
+        
         Vector3 VectorOnLocation = Location - (Vector3)WorldComplexMassController.GetCenterOfMass();
         return Quaternion.LookRotation(Vector3.forward, VectorOnLocation.normalized);
     }

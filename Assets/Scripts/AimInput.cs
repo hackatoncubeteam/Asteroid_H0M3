@@ -11,7 +11,7 @@ public class AimInput : MonoBehaviour
     private void Awake()
     {
         _aimController = GetComponent<AimController>();
-        _camera = GetComponent<Camera>();
+        _camera = FindObjectOfType<Camera>();
     }
 
     // Update is called once per frame

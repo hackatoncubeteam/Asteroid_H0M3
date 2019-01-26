@@ -11,7 +11,9 @@ public class MovementInput : MonoBehaviour
     private string MovementInputAxis = "Horizontal";
     
     [SerializeField] 
-    private string JumpInputAxis = "Vertical";
+    private string JumpInputAxis = "Jump";
+
+    private bool _jumpPressed = false;
     
     // Start is called before the first frame update
     void Awake()
@@ -23,9 +25,14 @@ public class MovementInput : MonoBehaviour
     void Update()
     {
         CharacterMovement.AddMovementInput(Vector3.right * Input.GetAxis(MovementInputAxis));
-        if (Input.GetAxis(JumpInputAxis) > 0)
+        if (Input.GetAxis(JumpInputAxis) > 0 != _jumpPressed)
         {
-            CharacterMovement.Jump();
+            _jumpPressed = Input.GetAxis(JumpInputAxis) > 0;
+
+            if (_jumpPressed)
+            {
+                CharacterMovement.Jump();
+            }
         }
     }
 }

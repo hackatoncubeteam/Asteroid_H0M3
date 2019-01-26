@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 
 public class AimController : MonoBehaviour
 {
@@ -8,26 +10,38 @@ public class AimController : MonoBehaviour
     private Vector3 OriginAimDirection = Vector3.right;
 
     [SerializeField]
-    private GameObject Weapon;
-
-    private Quaternion _aimRotation = Quaternion.identity;
+    private Transform Weapon;
+    
+    [SerializeField]
+    private Transform WeaponSocket;
+    
+    [SerializeField]
+    private float AimingSpeed = 0.3f;
+    
+    private Quaternion _desiredAimRotation = Quaternion.identity;
     
     public void AimToPoint(Vector3 TargetPoint)
     {
-        var worldAimDirection = transform.position - TargetPoint;
-        var localAimDirection = ComplexMassController.GetRotatorForLocation(transform.position) * worldAimDirection;
+        Vector2 worldAimDirection = ((Vector2)(TargetPoint - WeaponSocket.transform.position)).normalized;
         
-        _aimRotation = Quaternion.FromToRotation(OriginAimDirection, localAimDirection);
-    }
-
-    public Quaternion GetAimRotation()
-    {
-        return _aimRotation;
+        Vector2 localAimDirection = Quaternion.Inverse(transform.rotation) * worldAimDirection;
+        
+        _desiredAimRotation = Quaternion.FromToRotation(OriginAimDirection, localAimDirection);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, _aimRotation * transform.rotation * OriginAimDirection);
+        Gizmos.DrawRay(WeaponSocket.position, (_desiredAimRotation * transform.rotation) * OriginAimDirection);
+    }
+
+    public void Update()
+    {
+        Quaternion currentRotation = Weapon.rotation;
+        Quaternion desiredRotation = _desiredAimRotation * transform.rotation;
+
+        Quaternion interpolatedRotation = Quaternion.Lerp(currentRotation, desiredRotation, AimingSpeed);
+        
+        Weapon.SetPositionAndRotation(WeaponSocket.position, interpolatedRotation);
     }
 }
