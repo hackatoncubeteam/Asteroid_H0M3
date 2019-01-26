@@ -18,12 +18,14 @@ public class WaterFlowController : MonoBehaviour
     
     public void SetState(bool NewState)
     {
-        WaterFlow.gameObject.SetActive(NewState);
+        WaterFlow.SetActivity(NewState);
         enabled = NewState;
     }
 
     void Update()
     {
-        Shooter.AddWorldForce(WaterFlow.GetFlowVector().normalized * -RecoilForce * Time.deltaTime);
+        float recoilForce = WaterFlow.IsHitting() ? -BustedRecoilForce : -RecoilForce;
+        print(recoilForce);
+        Shooter.AddWorldForce(WaterFlow.GetFlowVector().normalized * recoilForce * Time.deltaTime);
     }
 }
