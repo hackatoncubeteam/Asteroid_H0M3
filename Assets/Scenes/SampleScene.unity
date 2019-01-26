@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 244824732}
   - component: {fileID: 244824731}
   - component: {fileID: 244824730}
+  - component: {fileID: 244824734}
   m_Layer: 0
   m_Name: Meteor
   m_TagString: Meteor
@@ -163,7 +164,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &244824732
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -179,7 +180,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.24
 --- !u!4 &244824733
 Transform:
   m_ObjectHideFlags: 0
@@ -188,13 +189,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244824729}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.91, y: 0, z: 0}
+  m_LocalPosition: {x: 7.52, y: 3.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 869712625}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &244824734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244824729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4520153075a894f82d5b940ec0e5c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meteorSpeed: 4.5
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +381,7 @@ GameObject:
   - component: {fileID: 1888720191}
   - component: {fileID: 1888720192}
   m_Layer: 0
-  m_Name: Planet
+  m_Name: Moon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -447,7 +461,7 @@ GameObject:
   - component: {fileID: 2014893082}
   - component: {fileID: 2014893084}
   m_Layer: 0
-  m_Name: Planet
+  m_Name: Moon
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -468,7 +482,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.03838992, y: 0}
   serializedVersion: 2
-  m_Radius: 1.2581949
+  m_Radius: 3.95
 --- !u!4 &2014893083
 Transform:
   m_ObjectHideFlags: 0
@@ -482,7 +496,7 @@ Transform:
   m_Children:
   - {fileID: 1888720191}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!250 &2014893084
 PointEffector2D:
@@ -496,11 +510,11 @@ PointEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_ForceMagnitude: -10
+  m_ForceMagnitude: -4
   m_ForceVariation: 0
   m_DistanceScale: 1
   m_ForceSource: 0
   m_ForceTarget: 0
   m_ForceMode: 0
-  m_Drag: 0
+  m_Drag: 0.05
   m_AngularDrag: 0
