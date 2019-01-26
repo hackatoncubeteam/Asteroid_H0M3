@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class ComplexMassController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static ComplexMassController WorldComplexMassController;
+
+    public static Quaternion GetRotatorForLocation(Vector3 Location)
     {
-        
+        Vector3 VectorOnLocation = Location - (Vector3)WorldComplexMassController.GetCenterOfMass();
+        return Quaternion.LookRotation(Vector3.forward, VectorOnLocation.normalized);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        WorldComplexMassController = this;
     }
 
     public Rigidbody2D[] GetAllIncludedBodies()
