@@ -25,7 +25,6 @@ public class WaterFlowController : MonoBehaviour
     void Update()
     {
         float recoilForce = WaterFlow.IsHitting() ? -BustedRecoilForce : -RecoilForce;
-        print(recoilForce);
         Shooter.AddWorldForce(WaterFlow.GetFlowVector().normalized * recoilForce * Time.deltaTime);
     }
 }
