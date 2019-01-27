@@ -27,14 +27,14 @@ public class Pollution : MonoBehaviour
         pollutionLevel = _pollutionLevel;
     }
     
-    // Start is called before the first frame update
+
     void Start()
     {
         SetPollutionLevel(100);
     }
 
 
-    void GetDamage(float damage)
+    public void GetDamage(float damage)
     {
         PollutionLevel -= damage;
         SetPollutionLevel(pollutionLevel);

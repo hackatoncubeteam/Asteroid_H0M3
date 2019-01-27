@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class WaterFlow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Pollution pollution;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] float timer;
+
+    [SerializeField] float givenDamageToMeteors;
+
+    float pastTime;
 
     private bool _isHitting;
+
 
     public Vector3 GetFlowVector()
     {
@@ -54,5 +51,17 @@ public class WaterFlow : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         _isHitting = true;
+
+        if (timer < Time.time - pastTime)
+        {
+            if (other.CompareTag("meteor"))
+            {
+                pollution = other.gameObject.GetComponent<Pollution>();
+                if (pollution == null)
+                    Debug.Log("WaterFlow has no reference to Pullution in meteor");
+
+                pollution.GetDamage(givenDamageToMeteors);
+            }
+        }
     }
 }
