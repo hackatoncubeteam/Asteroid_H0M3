@@ -1,0 +1,63 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class UIController : MonoBehaviour
+{
+    [SerializeField] GameObject startPanel;
+
+    [SerializeField] GameObject inGamePanel;
+
+    [SerializeField] GameObject gameOverPanel;
+
+    [SerializeField] GameObject pauseGamePanel;
+
+
+    void Awake()
+    {
+        if (startPanel == null)
+            Debug.Log("UIController has no reference to startPanel");
+
+        if (inGamePanel == null)
+            Debug.Log("UIController has no reference to gamePanel");
+
+        if (gameOverPanel == null)
+            Debug.Log("UIController has no reference to gameOverPanel");
+
+        if (pauseGamePanel == null)
+            Debug.Log("UIController has no reference to pauseGamePanel");
+    }
+
+    void Start()
+    {
+        startPanel.SetActive(true);
+        inGamePanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+        pauseGamePanel.SetActive(false);
+    }
+
+    public void StartGame()
+    {
+        startPanel.SetActive(false);
+        inGamePanel.SetActive(true);
+        gameOverPanel.SetActive(false);
+        pauseGamePanel.SetActive(false);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+    public void GameOver()
+    {
+        gameOverPanel.SetActive(true);
+        inGamePanel.SetActive(false);
+    }
+
+    public void Pause()
+    {
+        inGamePanel.SetActive(false);
+        pauseGamePanel.SetActive(true);
+    }
+}
