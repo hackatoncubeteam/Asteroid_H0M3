@@ -44,9 +44,9 @@ public class CameraLocationController : MonoBehaviour
             return;
         }
 
-        Vector3 desiredLocation = (Vector3)TargetCenterOfMass.GetCenterOfMass() + Offset;
+        Vector3 desiredLocation = (Vector3)TargetCharacter.transform.position /*(Vector3)TargetCenterOfMass.GetCenterOfMass()*/ + Offset;
         transform.position = Vector3.Lerp(transform.position, desiredLocation, CameraMoveSpeed * Time.deltaTime);
-        Vector2 vectorOnTarget = TargetCharacter.transform.position - transform.position;
+        Vector2 vectorOnTarget = TargetCharacter.transform.position - (Vector3)TargetCenterOfMass.GetCenterOfMass();
 
         float desiredSize = vectorOnTarget.magnitude / Character_MoonScreenLineSize / 2;
         _camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, desiredSize, CameraZoomSpeed * Time.deltaTime);
