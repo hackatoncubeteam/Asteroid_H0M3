@@ -17,17 +17,18 @@ public class JoinTheMoon : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        planetPos = GameObject.FindGameObjectWithTag("Planet").GetComponent<Transform>();
+        planetPos = GameObject.FindGameObjectWithTag("BaseMoon").GetComponent<Transform>();
     }
 
 
     void OnCollisionEnter2D(Collision2D col)
     {        
         rb.velocity = Vector2.zero;
-        if(col.transform.parent.CompareTag("Planet"))
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        else if(col.transform.CompareTag("Planet"))
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        if (col.transform.CompareTag("BaseMoon") || 
+           (col.transform.parent != null && col.transform.parent.CompareTag("BaseMoon")))
+        {
+            //rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
 
         var distance = Vector3.Distance(transform.position, planetPos.position);
@@ -36,5 +37,22 @@ public class JoinTheMoon : MonoBehaviour
         gameObject.transform.SetParent(col.transform);
 
         toDisable.enabled = false;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {        
+        rb.velocity = Vector2.zero;
+
+        if (col.transform.CompareTag("BaseMoon") || 
+           (col.transform.parent != null && col.transform.parent.CompareTag("BaseMoon")))
+        {
+            //rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+
+        gameObject.transform.SetParent(null);
+
+        toDisable.enabled = true;
+        }
     }
 }

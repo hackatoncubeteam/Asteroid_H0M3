@@ -17,6 +17,9 @@ public class AimController : MonoBehaviour
     
     [SerializeField]
     private float AimingSpeed = 0.3f;
+
+    [SerializeField]
+    private GameObject Image;
     
     private Quaternion _desiredAimRotation = Quaternion.identity;
     
@@ -39,6 +42,8 @@ public class AimController : MonoBehaviour
     {
         Quaternion currentRotation = Weapon.rotation;
         Quaternion desiredRotation = _desiredAimRotation * transform.rotation;
+
+        Image.GetComponent<SpriteRenderer>().flipX = !(_desiredAimRotation.eulerAngles.z < 90 || _desiredAimRotation.eulerAngles.z > 270);
 
         Quaternion interpolatedRotation = Quaternion.Lerp(currentRotation, desiredRotation, AimingSpeed);
         

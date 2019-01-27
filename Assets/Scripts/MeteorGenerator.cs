@@ -3,10 +3,7 @@ using UnityEngine;
 
 
 public class MeteorGenerator : MonoBehaviour
-{
-    BezierCurve bc;
-
-    [SerializeField] GameObject meteor;
+{[SerializeField] GameObject meteor;
 
     [SerializeField] float timer;
 
@@ -14,18 +11,12 @@ public class MeteorGenerator : MonoBehaviour
 
     [SerializeField] float LaunchForce = 10.0f;
 
+    [SerializeField] private BezierCurve GeneratorCurve;
+
     float time;
 
     [SerializeField]
     Transform Moon;
-  
-
-    void Start()
-    {
-        bc = GameObject.FindGameObjectWithTag("MeteorCurve").GetComponent<BezierCurve>();
-        if (bc == null)
-            Debug.Log("in MeteorGenerator no reference to BezierCurve");
-    }
 
     void Update()
     {
@@ -38,7 +29,7 @@ public class MeteorGenerator : MonoBehaviour
 
     void SpawnMeteor()
     {
-        GameObject NewMeteor = Instantiate(meteor, bc.GetPointAt(Random.value), Quaternion.identity);
+        GameObject NewMeteor = Instantiate(meteor, GeneratorCurve.GetPointAt(Random.value), Quaternion.identity);
         var MeteorBody = NewMeteor.GetComponent<Rigidbody2D>();
 
         Vector3 forceDirection = (Moon.position - NewMeteor.transform.position).normalized;

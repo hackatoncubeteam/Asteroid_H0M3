@@ -45,7 +45,7 @@ public class CharacterMovement : MonoBehaviour
     public bool CanJump()
     {
         Vector3 down = ComplexMassController.GetRotatorForLocation(transform.position) * Vector3.down;
-        var hit = Physics2D.Raycast(transform.position, down, StandingHeight, LayerMask.GetMask("SpaceBodies"));
+        var hit = Physics2D.Raycast(transform.position, down, StandingHeight, LayerMask.GetMask("Moon", "Asteroid"));
 
         return hit;
     }

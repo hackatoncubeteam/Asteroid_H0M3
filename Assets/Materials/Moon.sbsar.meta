@@ -19,8 +19,7 @@ ScriptedImporter:
     generateAllOutputs: 0
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://Moon\" label=\"\" >\n  <presetinput identifier=\"$randomseed\"
-      uid=\"2812032582\" type=\"4\" value=\"3352\" />\n  <presetinput identifier=\"Dirt\"
-      uid=\"2245983558\" type=\"0\" value=\"0.68\" />\n </sbspreset>\n"
+      uid=\"2812032582\" type=\"4\" value=\"3352\" />\n </sbspreset>\n"
     shaderName: Standard
     outputNames: baseColor
     texturePackingList:

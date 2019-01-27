@@ -7,6 +7,6 @@ public class PivotPoint : MonoBehaviour
     void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.parent.position, 0.1f);
+        Gizmos.DrawSphere(transform.position, 0.1f);
     }
 }

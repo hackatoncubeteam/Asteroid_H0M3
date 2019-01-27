@@ -25,6 +25,10 @@ public class Pollution : MonoBehaviour
     public void SetPollutionLevel(float _pollutionLevel)
     {
         pollutionLevel = _pollutionLevel;
+
+        var renderer = GetComponentInChildren<MeshRenderer>();
+        
+        //renderer.
     }
     
 
@@ -36,8 +40,7 @@ public class Pollution : MonoBehaviour
 
     public void GetDamage(float damage)
     {
-        PollutionLevel -= damage;
-        SetPollutionLevel(pollutionLevel);
+        SetPollutionLevel(pollutionLevel - damage);
     }
     
 }

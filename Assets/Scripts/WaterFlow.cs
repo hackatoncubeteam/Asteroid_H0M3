@@ -54,7 +54,7 @@ public class WaterFlow : MonoBehaviour
 
         if (timer < Time.time - pastTime)
         {
-            if (other.CompareTag("meteor"))
+            if (other.CompareTag("Meteor"))
             {
                 pollution = other.gameObject.GetComponent<Pollution>();
                 if (pollution == null)
