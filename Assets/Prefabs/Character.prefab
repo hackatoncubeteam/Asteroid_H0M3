@@ -246,6 +246,8 @@ GameObject:
   - component: {fileID: 8061296173694719141}
   - component: {fileID: 8061296173694719162}
   - component: {fileID: 8061296173694719163}
+  - component: {fileID: 8841476259823985852}
+  - component: {fileID: 2913534802207406892}
   m_Layer: 10
   m_Name: Character
   m_TagString: Untagged
@@ -443,6 +445,34 @@ MonoBehaviour:
   WaterFlow: {fileID: 8061296172665227130}
   RecoilForce: 30
   BustedRecoilForce: 15000
+--- !u!114 &8841476259823985852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8061296173694719149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55a1cdb8f4e85764797a53745efe6938, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &2913534802207406892
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8061296173694719149}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.12}
+  serializedVersion: 2
+  m_Radius: 0.025118727
 --- !u!1 &8460394852462238249
 GameObject:
   m_ObjectHideFlags: 0

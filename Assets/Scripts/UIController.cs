@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -45,9 +46,10 @@ public class UIController : MonoBehaviour
     public void StartGame()
     {
         startPanel.SetActive(false);
-        inGamePanel.SetActive(true);
+        inGamePanel.SetActive(false);
         gameOverPanel.SetActive(false);
         pauseGamePanel.SetActive(false);
+        SceneManager.LoadScene(1);
     }
 
     public void ExitGame()

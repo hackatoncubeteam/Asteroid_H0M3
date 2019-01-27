@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerState : MonoBehaviour
 {
@@ -8,8 +9,11 @@ public class PlayerState : MonoBehaviour
 
     bool isGameOver;
 
-    void OnTriggerEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        isGameOver = true;
+        if (col.gameObject.CompareTag("Meteor"))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }

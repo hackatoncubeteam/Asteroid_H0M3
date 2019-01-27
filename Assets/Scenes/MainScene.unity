@@ -179,11 +179,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 865989810816565750, guid: 525b67bf5319be946bb040536f1a0d4a,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 865989810816565751, guid: 525b67bf5319be946bb040536f1a0d4a,
         type: 3}
       propertyPath: CameraZoomSpeed
@@ -198,6 +193,11 @@ PrefabInstance:
         type: 3}
       propertyPath: CameraMoveSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 865989810816565750, guid: 525b67bf5319be946bb040536f1a0d4a,
+        type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 525b67bf5319be946bb040536f1a0d4a, type: 3}
@@ -1086,6 +1086,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2913534802207406892, guid: f74cf46c9b649cd4d9f86689938877a0,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2913534802207406892, guid: f74cf46c9b649cd4d9f86689938877a0,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.05761165
+      objectReference: {fileID: 0}
+    - target: {fileID: 2913534802207406892, guid: f74cf46c9b649cd4d9f86689938877a0,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f74cf46c9b649cd4d9f86689938877a0, type: 3}
