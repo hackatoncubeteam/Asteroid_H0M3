@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4758adea9afb846a8f8c9156e11d40, type: 3}
+  m_Name: color_dude_Data
+  m_EditorClassIdentifier: 
+  dataName: color_chuvack
+  dragonBonesJSON: {fileID: 4900000, guid: 46c274ef958a0794aafd91fa3e8afb87, type: 3}
+  textureAtlas:
+  - textureAtlasJSON: {fileID: 4900000, guid: b71716790efe3bc4a9e41e9079255e38, type: 3}
+    texture: {fileID: 2800000, guid: b3541cfab2ba64546ae5b53356f55bbf, type: 3}
+    material: {fileID: 2100000, guid: fc1e063f7ce110d4f989947616dda7cf, type: 2}
+    uiMaterial: {fileID: 0}
