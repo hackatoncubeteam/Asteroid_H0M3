@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
+    [SerializeField] SpriteRenderer backgroundImage;
+
+
     [SerializeField] GameObject startPanel;
 
     [SerializeField] GameObject inGamePanel;
@@ -11,6 +14,8 @@ public class UIController : MonoBehaviour
     [SerializeField] GameObject gameOverPanel;
 
     [SerializeField] GameObject pauseGamePanel;
+
+    [SerializeField] Sprite[] sprites;
 
 
     void Awake()
@@ -27,6 +32,7 @@ public class UIController : MonoBehaviour
         if (pauseGamePanel == null)
             Debug.Log("UIController has no reference to pauseGamePanel");
     }
+
 
     void Start()
     {
@@ -59,5 +65,13 @@ public class UIController : MonoBehaviour
     {
         inGamePanel.SetActive(false);
         pauseGamePanel.SetActive(true);
+    }
+
+    public void ChangeBackgroundImage(bool isOnStart)
+    {
+        if (isOnStart)
+            backgroundImage.sprite = sprites[0];
+        else
+            backgroundImage.sprite = sprites[1];
     }
 }
