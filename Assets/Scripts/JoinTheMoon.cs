@@ -24,7 +24,11 @@ public class JoinTheMoon : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {        
         rb.velocity = Vector2.zero;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        if(col.transform.parent.CompareTag("Planet"))
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        else if(col.transform.CompareTag("Planet"))
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
 
         var distance = Vector3.Distance(transform.position, planetPos.position);
         if (isEnableMerge == true)
