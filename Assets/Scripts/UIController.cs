@@ -63,8 +63,8 @@ public class UIController : MonoBehaviour
 
     public void Pause()
     {
-        inGamePanel.SetActive(false);
-        pauseGamePanel.SetActive(true);
+        inGamePanel.SetActive(!inGamePanel.activeSelf);
+        pauseGamePanel.SetActive(!pauseGamePanel.activeSelf);
     }
 
     public void ChangeBackgroundImage(bool isOnStart)
