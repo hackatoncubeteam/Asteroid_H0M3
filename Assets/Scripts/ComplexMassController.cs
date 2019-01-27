@@ -5,9 +5,20 @@ using UnityEngine;
 public class ComplexMassController : MonoBehaviour
 {
     private static ComplexMassController WorldComplexMassController;
+    
+    [SerializeField]
+    private PointEffector2D GravityCenter;
+    
+    [SerializeField]
+    private float GravityForceFactor = -0.03f;
 
     public static Quaternion GetRotatorForLocation(Vector3 Location)
     {
+        if (WorldComplexMassController == null)
+        {
+            return Quaternion.identity;
+        }
+        
         Vector3 VectorOnLocation = Location - (Vector3)WorldComplexMassController.GetCenterOfMass();
         return Quaternion.LookRotation(Vector3.forward, VectorOnLocation.normalized);
     }
@@ -58,5 +69,11 @@ public class ComplexMassController : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawSphere(GetCenterOfMass(), 1f);
+    }
+
+    private void Update()
+    {
+        GravityCenter.transform.position = GetCenterOfMass();
+        GravityCenter.forceMagnitude = GetMass() * GravityForceFactor;
     }
 }

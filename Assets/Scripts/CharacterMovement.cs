@@ -6,6 +6,7 @@ using UnityEngine;
 public class CharacterMovement : MonoBehaviour
 {
     private Vector3 _accumulatedForce = new Vector3();
+    private Vector3 _accumulatedWorldForce = new Vector3();
     private Vector3 _accumulatedImpulse = new Vector3();
     private Rigidbody2D _rigidbody2D;
     
@@ -17,8 +18,9 @@ public class CharacterMovement : MonoBehaviour
     
     [SerializeField]
     private float MaxInputVelocity = 10.0f;
-
-    private bool _canJump = true;
+    
+    [SerializeField]
+    private float StandingHeight = 1.0f;
     
     void Awake()
     {
@@ -27,21 +29,37 @@ public class CharacterMovement : MonoBehaviour
 
     public void AddMovementInput(Vector3 movementInput)
     {
-        _accumulatedForce += movementInput * InputForce;
+        AddMovementForce(movementInput * InputForce);
+    }
+
+    public void AddMovementForce(Vector3 movementForce)
+    {
+        _accumulatedForce += movementForce;
+    }
+
+    public void AddWorldForce(Vector3 worldForce)
+    {
+        _accumulatedWorldForce += worldForce;
+    }
+
+    public bool CanJump()
+    {
+        Vector3 down = ComplexMassController.GetRotatorForLocation(transform.position) * Vector3.down;
+        var hit = Physics2D.Raycast(transform.position, down, StandingHeight, LayerMask.GetMask("SpaceBodies"));
+
+        return hit;
     }
 
     public void Jump()
     {
-        Collider2D collider = _rigidbody2D.GetComponent<Collider2D>();
-        Collider2D[] contacts = new Collider2D[0];
-        if (_canJump)
+        if (CanJump())
         {
             _accumulatedImpulse += Vector3.up * JumpImpulse;
         }
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.rotation = ComplexMassController.GetRotatorForLocation(transform.position);
         
@@ -49,24 +67,24 @@ public class CharacterMovement : MonoBehaviour
         
         if (InputProjectionOnVelocity < MaxInputVelocity)
         {
-            _rigidbody2D.AddRelativeForce(_accumulatedForce, ForceMode2D.Force);
+            _rigidbody2D.AddRelativeForce(_accumulatedForce * Time.deltaTime, ForceMode2D.Force);
         }
+        
+        _rigidbody2D.AddForce(_accumulatedWorldForce * Time.deltaTime, ForceMode2D.Force);
 
         _rigidbody2D.AddRelativeForce(_accumulatedImpulse, ForceMode2D.Impulse);
         
         _accumulatedForce = new Vector3();
+        _accumulatedWorldForce = new Vector3();
         _accumulatedImpulse = new Vector3();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnDrawGizmos()
     {
-        _canJump = true;
-        print("Can jump");
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        _canJump = false;
-        print("Cannot jump");
+        Gizmos.color = Color.yellow;
+        
+        Vector3 down = ComplexMassController.GetRotatorForLocation(transform.position) * Vector3.down;
+        
+        Gizmos.DrawRay(transform.position, down * StandingHeight);
     }
 }
