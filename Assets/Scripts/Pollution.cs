@@ -5,22 +5,39 @@ using UnityEngine;
 public class Pollution : MonoBehaviour
 {
     [SerializeField, Range(0, 100)]
-    private float PollutionLevel;
+    private float pollutionLevel;
 
-    public void SetPollutionLevel(float pollutionLevel)
+    float PollutionLevel
     {
-        PollutionLevel = pollutionLevel;
+        get
+        {
+            return pollutionLevel;
+        }
+        set
+        {
+            if (pollutionLevel < 0)
+                pollutionLevel = 0;
+
+            value = pollutionLevel;
+        }
+    }
+
+    public void SetPollutionLevel(float _pollutionLevel)
+    {
+        pollutionLevel = _pollutionLevel;
     }
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetPollutionLevel(100);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    void GetDamage(float damage)
     {
-        
+        PollutionLevel -= damage;
+        SetPollutionLevel(pollutionLevel);
     }
+    
 }
